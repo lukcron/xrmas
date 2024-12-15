@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>XRmas</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/white.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=El+Messiri:wght@400..700&family=Outfit:wght@100..900&display=swap">
+	<style>
+		:root {
+			--r-background-color: /* #510208 */ /* 480d10 */ #062815;
+  			--r-main-font: "Outfit";
+			--r-main-color: #d6ad48;
+			--r-heading-font: "El Messiri";
+			--r-heading-color: #d6ad48;
+			--r-heading-text-transform: none;
+			--r-link-color: #d6ad48;
+			--r-link-color-hover: #a0632d;
+		}
+		.reveal {
+			font-weight: 200;
+		}
+		.reveal .slides > section {
+			top: 0;
+            bottom: 0;
+            display: flex !important;
+            flex-direction: column;
+		}
+        .reveal section li {
+            margin-bottom: 1em;
+        }
+        .reveal section li img {
+            max-width: 10vw;
+            right: 0;
+            top: 0;
+        }
+        .stack {
+            position: relative;
+            max-width: 30vw;
+            margin: 1em 2em;
+            border-radius: 3px;
+            background-color: #fff;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+        .stack:before {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            border-radius: 3px;
+            background-color: #fff;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+            top: 4px;
+            z-index: -10;
+            transform: rotate(3deg);
+        }
+        .stack:after {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            border-radius: 3px;
+            background-color: #fff;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+            top: 8px;
+            z-index: -20;
+            transform: rotate(-1deg);
+        }
+        .reveal .logo {
+            margin: 0;
+            max-width: 100%;
+            max-height: 100%;
+            position: absolute;
+            left: -2vw;
+            height: 13vh;
+            top: -5.5vw;
+        }
+        .logo-container::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -7px;
+            left: -3px;
+            right: 0;
+            height: 23px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAXCAYAAACS5bYWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABFpJREFUeNrUV0tIo1cUvpkYjQ4xxSA6DxuNqG0dtaUKOgs3s6i0dFd3pSsXdjeIixakiGA34sZuXCkoONLFwJTK4GMYLYXg29gatTpiXurkbd7vv9/5ub+IxuhA7eiFQ5Kbc8/57ne/e87/ywRBYLdl3GG3aNwqsLJ0k0tLS+fmcnNzWUVFBVMoFGx2djarvLxcm5OTw+bm5iytra2xc4ExNjY27iqVyvvwK6CpeDzuCYVC1urq6qDA9UcfPp+PHR4esmAwKK6tr68/l5/8rgQ2Ozub1dbWyiYmJooaGxt/VqvV38jlchX9l0qlwoFA4DWS/RKLxRxFRUVf5+XlPcaaT2AP0sVPJBL2SCRiAPBpu93+vKamZo/Ae71eZjabWV1dXVqw7CKwp43ksrCw8Bhg7MJ/PLDZ5PHx8cz29vYT5JGD/bSYLgTrcDgYdk6siSc6NjZWDaAe4ZoHQL+cmZnRpZPnhWDpD8kw7uKo9ML/NMCsd2tr61vkzboMrEyv138M7TyLRqMWMBsX3sMgaZhMpp+AR5EJrCocDpuEGzKg4x8khs+CVWxubvZfR9JkMik4nU7BarUKLpeLmLsKuwIqTLynp4fqmIzASrqQT09Pf1VVVfX0KsWZ6uHBwQHTaDSsoKAgo6/H4xHLEcrVyRwuEisrKzs5XrrIVAVwiUVDKRRrL+YI32ewdVhMApuHWvcj6vids6J2u90MF4yBHUZNgKoEBaRBQalJqFSqtJfUYrGIlQX+ydXVVTN+u0tKSjQNDQ1axJVl2iTypebn55d7e3v/kqoDgZU1NTU9LCws/Py0M+2ekuGincxJ3yF+18jIyHJLS0slQJUWFxczrBeBE0vE5tHRkbixlZWVfSR8gTX/0P5gH7S1tX3Z3t7+BW8qAvwSfr8/jA0EIRM/qoFtampqbW9vTw+XA+ojUruVd3Z2tvb19T2TQFEim81GgVJoCvvj4+NLOJZgaWmpemdn5y3a6BbcnJDAw8HBwac6ne6eqCW5XDwB3qVSqM9/DAwMUNy/eVLabT7sI25qwgujThCBhWE+mAt2yNc4SQKSZrOQQE1HS22VJkmPAGTr7+//fX19fRk+Zgq0trbGeFAKEAQT98BSqKOj47vm5uaa/Px8JeIk4GcaHh6eWlxcfAU/A8xG67BxAX3fwdcbYUpSDJ06Z49Ak8ZC3OL8f3YiA4PBYKdLQ2AJ9OTk5GpXV9cQiCVh79M94QtlPLDUE/1gPNrd3f0W33W4cBoco48zQuy/IZYAMnGqlSc4c66L9JruQUaSARXeT8HGKzxAqFBekni6+h46+pMzGiJGMgTOJh1yU/KNEGDvZWvfBawkA9ppwGg0mrRa7SOI2g+gxOgbJIpdFpj72PnxSnPX8vqRxTURgBQWKisrH+GThOm+CtAzoK/9/Uiqq/6hoaHfdnd3jaOjo7/yY7yxbwqkWy3sQzpS2C6YirwvUJk0y7hurfyGRrnduPGvAAMASmo8wzeVwfsAAAAASUVORK5CYII=) no-repeat 0 0,
+            url(data:image/png;base64,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) no-repeat 50% 0,
+            url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAXCAYAAACFxybfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAodJREFUeNrsVb1rWlEUv2pN/GqspKRSKFYXWzEloIWif0Fn6dJChQ7OQil0qd3EzcEpg0OgdHDr4CQODk7VRlLMEIVqApX4We0zflR9/Z1Ui4T34ksaaAYP/Hzc673n/M6550PG8zz73yKjn0wm83fDYDAwo9HINBrNnwOQg4MDs0ql2lQqlfdAWont7ng8Pjw+Ps44nc4G1pI9EXWaSOzt7TGO42aH5Pv7+08ajUZ0MBiUeXEZd7vdL5VK5fX29rZ+5tQiEmdxKrlcjsEYczgcynK5/BKKv/IXFNz/XiqVXkHdjUuRIA9SqdRD8or/R8Ez9fr9fqHVakUR4c2z0REjIQuHw2ZcrPBXLCA0RHTezEdHjIQqkUhEr9I4HOILhQLf6/VoOUFEvDMiQiToDx1Cdz+bzZ6bUFarlel0OkkVUK/XWbvdPoVer5fh3ntsfwJ+CJ2XA4p0Op1bpBgJyxDehQQ6nQ5DZXHBYDBZq9V+EhFUndnr9drEqoc2bwJbwGPgtohuVSwWe2Gz2TZMJpNgRKi6qtUqg2EWj8dTgUDgo0KhWPN4PC70EvXOzs67fD6/S6kiRIKeZA1YJ2MiJNbdbvfTUCjkV6vVK2hcDF8GI2w0GrGTkxM2HA5PDxaLxSOfz/cWEfk81X0XIMMFgJJ/srBjCgk8IdcfuVyuZ36//7nFYtkQyAMumUzuRiKRD0jMFLa+AZOpYwqgB/ziBVqmVBKUO7eAB/R0WG/Z7XaTVqtdbTabHJL6EK2djBaBPHA0NSqpbUsiMUeEBgpF4Q5AbZrmSJ/yEWgBTaBNHl9kdkgmMUeG7qwAq9PqovceTA3zlxlgsuswyuXsGsiSxJLEkoSY/BZgAEjRodi+uBruAAAAAElFTkSuQmCC) no-repeat 100% 0;
+        }
+        .reveal .slides section.present.title {
+            background-color: #fff;
+            margin: 0;
+            width: 100%;
+        }
+        .title-content {
+            position: relative;
+            width: auto;
+            height: calc(80vh - 2vw);
+            margin: 2vw;
+            margin-top: 20vh;
+            background-color: #062815;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .reveal p {
+            max-width: 24em;
+            margin: var(--r-block-margin) auto;
+        }
+        .text {
+            max-width: 24em;
+            margin: var(--r-block-margin) 0;
+        }
+        #multimodal {
+            --mm-maxheight: calc(100vh - 4.6vw);
+        }
+        .split {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .myslide {
+            margin: 2vw;
+            height: calc(100vh - 4vw);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 
+
+        Christmas Button 
+
+        IE9+, Chrome, Firefox, Opera
+
+        известные баги:
+        # нет снежной шапки на input[type="button"]
+        # Opera: на input не работает text-shadow
+        # Opera: на input при клике border окрашивается в черный цвет
+        # Opera: из-за конического градиента в фоне, в Опере сильно тормозят transitions (Opera 12.12)
+        # IE + Opera: В Опере при нажатии на input, в ИЕ при нажатии на input и button текст кнопки смещается вправо вниз
+        # IE9: не поддерживается transition и text-shadow
+
+        P.S. через border-image не прокатило: не поддерживается ИЕ, в Опере частичная поддержка.
+
+        */
+        .button {
+            display: inline-block;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+                    box-sizing:border-box;
+            min-width:100px;
+            padding: 22px 33px;
+            font-size: 26px;
+            line-height: 26px;
+            text-decoration: none;
+            color: #FFF !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.75);
+            background: #510208;
+            outline: none;
+            border-radius: 15px;
+            /* border: 1px solid #4c0300; */
+            box-shadow:
+                inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
+                inset 0 0 6px #a23227, /* inner glow */
+                inset 0 80px 80px -40px #ac3223, /* gradient */
+                1px 1px 3px rgba(0,0,0,0.75); /* shadow */
+                
+            position: relative;
+            overflow: visible; /* IE9 & 10 */
+            -webkit-transition: 500ms linear;
+            -moz-transition: 500ms linear;
+                -o-transition: 500ms linear;
+                            transition: 500ms linear;
+        }
+        .button::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -7px;
+            left: -3px;
+            right: 0;
+            height: 23px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAXCAYAAACS5bYWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABFpJREFUeNrUV0tIo1cUvpkYjQ4xxSA6DxuNqG0dtaUKOgs3s6i0dFd3pSsXdjeIixakiGA34sZuXCkoONLFwJTK4GMYLYXg29gatTpiXurkbd7vv9/5ub+IxuhA7eiFQ5Kbc8/57ne/e87/ywRBYLdl3GG3aNwqsLJ0k0tLS+fmcnNzWUVFBVMoFGx2djarvLxcm5OTw+bm5iytra2xc4ExNjY27iqVyvvwK6CpeDzuCYVC1urq6qDA9UcfPp+PHR4esmAwKK6tr68/l5/8rgQ2Ozub1dbWyiYmJooaGxt/VqvV38jlchX9l0qlwoFA4DWS/RKLxRxFRUVf5+XlPcaaT2AP0sVPJBL2SCRiAPBpu93+vKamZo/Ae71eZjabWV1dXVqw7CKwp43ksrCw8Bhg7MJ/PLDZ5PHx8cz29vYT5JGD/bSYLgTrcDgYdk6siSc6NjZWDaAe4ZoHQL+cmZnRpZPnhWDpD8kw7uKo9ML/NMCsd2tr61vkzboMrEyv138M7TyLRqMWMBsX3sMgaZhMpp+AR5EJrCocDpuEGzKg4x8khs+CVWxubvZfR9JkMik4nU7BarUKLpeLmLsKuwIqTLynp4fqmIzASrqQT09Pf1VVVfX0KsWZ6uHBwQHTaDSsoKAgo6/H4xHLEcrVyRwuEisrKzs5XrrIVAVwiUVDKRRrL+YI32ewdVhMApuHWvcj6vids6J2u90MF4yBHUZNgKoEBaRBQalJqFSqtJfUYrGIlQX+ydXVVTN+u0tKSjQNDQ1axJVl2iTypebn55d7e3v/kqoDgZU1NTU9LCws/Py0M+2ekuGincxJ3yF+18jIyHJLS0slQJUWFxczrBeBE0vE5tHRkbixlZWVfSR8gTX/0P5gH7S1tX3Z3t7+BW8qAvwSfr8/jA0EIRM/qoFtampqbW9vTw+XA+ojUruVd3Z2tvb19T2TQFEim81GgVJoCvvj4+NLOJZgaWmpemdn5y3a6BbcnJDAw8HBwac6ne6eqCW5XDwB3qVSqM9/DAwMUNy/eVLabT7sI25qwgujThCBhWE+mAt2yNc4SQKSZrOQQE1HS22VJkmPAGTr7+//fX19fRk+Zgq0trbGeFAKEAQT98BSqKOj47vm5uaa/Px8JeIk4GcaHh6eWlxcfAU/A8xG67BxAX3fwdcbYUpSDJ06Z49Ak8ZC3OL8f3YiA4PBYKdLQ2AJ9OTk5GpXV9cQiCVh79M94QtlPLDUE/1gPNrd3f0W33W4cBoco48zQuy/IZYAMnGqlSc4c66L9JruQUaSARXeT8HGKzxAqFBekni6+h46+pMzGiJGMgTOJh1yU/KNEGDvZWvfBawkA9ppwGg0mrRa7SOI2g+gxOgbJIpdFpj72PnxSnPX8vqRxTURgBQWKisrH+GThOm+CtAzoK/9/Uiqq/6hoaHfdnd3jaOjo7/yY7yxbwqkWy3sQzpS2C6YirwvUJk0y7hurfyGRrnduPGvAAMASmo8wzeVwfsAAAAASUVORK5CYII=) no-repeat 0 0,
+            url(data:image/png;base64,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) no-repeat 50% 0,
+            url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAXCAYAAACFxybfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAodJREFUeNrsVb1rWlEUv2pN/GqspKRSKFYXWzEloIWif0Fn6dJChQ7OQil0qd3EzcEpg0OgdHDr4CQODk7VRlLMEIVqApX4We0zflR9/Z1Ui4T34ksaaAYP/Hzc673n/M6550PG8zz73yKjn0wm83fDYDAwo9HINBrNnwOQg4MDs0ql2lQqlfdAWont7ng8Pjw+Ps44nc4G1pI9EXWaSOzt7TGO42aH5Pv7+08ajUZ0MBiUeXEZd7vdL5VK5fX29rZ+5tQiEmdxKrlcjsEYczgcynK5/BKKv/IXFNz/XiqVXkHdjUuRIA9SqdRD8or/R8Ez9fr9fqHVakUR4c2z0REjIQuHw2ZcrPBXLCA0RHTezEdHjIQqkUhEr9I4HOILhQLf6/VoOUFEvDMiQiToDx1Cdz+bzZ6bUFarlel0OkkVUK/XWbvdPoVer5fh3ntsfwJ+CJ2XA4p0Op1bpBgJyxDehQQ6nQ5DZXHBYDBZq9V+EhFUndnr9drEqoc2bwJbwGPgtohuVSwWe2Gz2TZMJpNgRKi6qtUqg2EWj8dTgUDgo0KhWPN4PC70EvXOzs67fD6/S6kiRIKeZA1YJ2MiJNbdbvfTUCjkV6vVK2hcDF8GI2w0GrGTkxM2HA5PDxaLxSOfz/cWEfk81X0XIMMFgJJ/srBjCgk8IdcfuVyuZ36//7nFYtkQyAMumUzuRiKRD0jMFLa+AZOpYwqgB/ziBVqmVBKUO7eAB/R0WG/Z7XaTVqtdbTabHJL6EK2djBaBPHA0NSqpbUsiMUeEBgpF4Q5AbZrmSJ/yEWgBTaBNHl9kdkgmMUeG7qwAq9PqovceTA3zlxlgsuswyuXsGsiSxJLEkoSY/BZgAEjRodi+uBruAAAAAElFTkSuQmCC) no-repeat 100% 0;
+            
+        }
+        .button:hover {
+            background: #a61715;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.75), 0 0 40px #FFF;
+            box-shadow:
+                inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
+                inset 0 0 6px #da3b2c, /* inner glow */
+                inset 0 80px 80px -40px #dd4330, /* gradient */
+                1px 1px 3px rgba(0,0,0,0.75); /* shadow */
+                
+        }
+        .button:focus {
+            outline: none; /*FF*/
+        }
+        .button:active {
+            box-shadow:
+                inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
+                inset 0 0 6px #da3b2c, /* inner glow */
+                inset 0 80px 80px -40px #dd4330, /* gradient */
+                0px 1px 0px rgba(255,255,255,0.25); /* shadow */
+                
+            -webkit-transition: 50ms linear;
+            -moz-transition: 50ms linear;
+                -o-transition: 50ms linear;
+                    transition: 50ms linear;
+        }
+
+        /* Lightrope */
+        .lightrope {
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            position: absolute;
+            z-index: 1;
+            margin: -15px 0 0 0 !important;
+            padding: 0;
+            pointer-events: none;
+            width: 100%;
+            top: 0;
+            display: block !important;
+        }
+        .lightrope li {
+            position: relative;
+            animation-fill-mode: both;
+            animation-iteration-count: infinite;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: block;
+            width: 12px;
+            height: 28px;
+            border-radius: 50%;
+            margin: 20px;
+            display: inline-block;
+            background: #00f7a5;
+            box-shadow: 0px 4.6666666667px 24px 3px #00f7a5;
+            animation-name: flash-1;
+            animation-duration: 2s;
+        }
+        .lightrope li:nth-child(2n+1) {
+            background: cyan;
+            box-shadow: 0px 4.6666666667px 24px 3px rgba(0, 255, 255, 0.5);
+            animation-name: flash-2;
+            animation-duration: 0.4s;
+        }
+        .lightrope li:nth-child(4n+2) {
+            background: #f70094;
+            box-shadow: 0px 4.6666666667px 24px 3px #f70094;
+            animation-name: flash-3;
+            animation-duration: 1.1s;
+        }
+        .lightrope li:nth-child(odd) {
+            animation-duration: 1.8s;
+        }
+        .lightrope li:nth-child(3n+1) {
+            animation-duration: 1.4s;
+        }
+        .lightrope li:before {
+            content: "";
+            position: absolute;
+            background: #222;
+            width: 10px;
+            height: 9.3333333333px;
+            border-radius: 3px;
+            top: -4.6666666667px;
+            left: 1px;
+        }
+        .lightrope li:after {
+            content: "";
+            top: -14px;
+            left: 9px;
+            position: absolute;
+            width: 52px;
+            height: 18.6666666667px;
+            border-bottom: solid #222 2px;
+            border-radius: 50%;
+        }
+        .lightrope li:last-child:after {
+            content: none;
+        }
+        .lightrope li:first-child {
+            margin-left: -40px;
+        }
+        @keyframes flash-1 {
+            0%, 100% {
+                background: #00f7a5;
+                box-shadow: 0px 4.6666666667px 24px 3px #00f7a5;
+            }
+            50% {
+                background: rgba(0, 247, 165, 0.4);
+                box-shadow: 0px 4.6666666667px 24px 3px rgba(0, 247, 165, 0.2);
+            }
+        }
+        @keyframes flash-2 {
+            0%, 100% {
+                background: cyan;
+                box-shadow: 0px 4.6666666667px 24px 3px cyan;
+            }
+            50% {
+                background: rgba(0, 255, 255, 0.4);
+                box-shadow: 0px 4.6666666667px 24px 3px rgba(0, 255, 255, 0.2);
+            }
+        }
+        @keyframes flash-3 {
+            0%, 100% {
+                background: #f70094;
+                box-shadow: 0px 4.6666666667px 24px 3px #f70094;
+            }
+            50% {
+                background: rgba(247, 0, 148, 0.4);
+                box-shadow: 0px 4.6666666667px 24px 3px rgba(247, 0, 148, 0.2);
+            }
+        }
+
+        /* Attribution plugin: text along the right edge of the viewport */
+        .attribution{
+            position: absolute;
+            top: 50%;
+            bottom: auto;
+            right: 0;
+            font-size: 0.4em;
+            pointer-events: none;
+            text-align: center;
+            writing-mode: vertical-lr;
+            transform: translate( -50%, -50% ) scale( 1 ) rotate( 180deg );
+            width: unset !important;
+            height: unset !important;
+        }
+        /* Attribution plugin: activate pointer events for attribution text only */
+        .attribution .content{
+            pointer-events: auto;
+        }
+        section {
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+        }
+        @media print {
+            .slide-background {
+                background-color: #062815 !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact; 
+            }
+            .title-content .content {
+                background-color: #062815 !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }   
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Titel Folie -->
+            <section class="title" id="winterworld">
+                <div class="title-content">
+                    <img class="logo" data-src="tubs.svg">
+                    <div class="content">
+                        <h1 style="font-family: 'Dancing Script';">XRMAS</h1>
+                        <p>Ein magisches Remote-Weihnachten</p>
+                        <!-- <h3>Extended Reality Multi-Agency Spaces</h3> -->
+                    </div>                    
+                </div>
+			</section>
+
+			<section>
+                <div class="myslide">
+                    <h2>Einführung</h2>
+                    <div class="split">
+                        <div style="flex-basis: 60%;" class="content">
+                            <ul>
+                                <li><p><strong>Autoren:</strong> Yaying Zhang, Brennan Jones, Sean Rintel, Carmen Neustaedter</p></li>
+                                <li><p><strong>Veröffentlicht:</strong> 23. Oktober 2021</p></li>
+                                <li><p><strong>Konferenz:</strong> CSCW '21: Computer Supported Cooperative Work and Social Computing</p></li>
+                            </ul>
+                        </div>
+                        <div class="stack">
+                            <img data-src="xrmasb.png">
+                        </div>
+                    </div>
+                </div>
+                <span class="attribution"><a href="https://doi.org/10.1145/3462204.3481782">https://doi.org/10.1145/3462204.3481782</a></span>
+			</section>
+
+            <!-- Einführung -->
+            <section>
+                <div class="myslide">
+                    <h2>Augmented Virtual Teleportation</h2>
+                    <div class="content">
+                        <ul>
+                            <li><p><strong>Lokaler-Nutzer: </strong> Augmented Reality (<a href="https://de.wikipedia.org/wiki/Erweiterte_Realit%C3%A4t">AR</a>)</p></li>
+                            <li><p><strong>Remote-Nutzer:</strong> Virtual Reality (<a href="https://de.wikipedia.org/wiki/Virtuelle_Realit%C3%A4t">VR</a>)</p></li>
+                        </ul>
+                        <p style="margin-top: 3em;">
+                            Nutzer können sich durch AR und VR in einer <strong>virtuellen Umgebung gegenseitig sehen</strong> und <strong>miteinander interagieren</strong>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+			 <!-- Herausforderungen der AVT-Systeme -->
+			 <section>
+                <div class="myslide">
+                    <h2>Herausforderungen</h2>
+                <div class="content">
+                    <div>
+                        <ul>
+                            <li><p><strong>Realismus:</strong> Remote-Nutzer können physische Objekte nur begrenzt kontrollieren</p></li>
+                            <li><p><strong>Uncanny Valley:</strong> Realistische Simulationen, die als unnatürlich empfunden werden</p></li>
+                            <li><p><strong>Beschränktheit:</strong> Bloße Nachbildung von Präsenz</p></li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+            <!-- Was ist XRmas? -->
+            <section>
+                <div class="myslide">
+                    <h2>Was ist XRmas?</h2>
+                    <div class="content">
+                        <div>
+                            <ul>
+                                <li><p>Kombination aus AR und VR für Remote-Familientreffen zu Weihnachten</p></li>
+                                <li><p>Nutzer können sowohl mit physischen als auch virtuellen Objekten interagieren</p></li>
+                                <li><p>Schafft "magische" Erfahrungen, die in der realen Welt nicht möglich wären</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Die Magie hinter XRmas -->
+            <section>
+                <div class="myslide">
+                    <h2>Die Magie hinter XRmas</h2>
+                    <div class="content">
+                        <div>
+                            <ul>
+                                <li class="fragmen">
+                                    <div class="split">
+                                        <p><strong>Geschenke überreichen:</strong> 
+                                            Digitale Geschenkboxen erscheinen in der AR-Umgebung und enthalten Überraschungen
+                                        </p>
+                                        <a href="#" data-modal-type="iframe" data-modal-url="https://www.youtube.com/embed/vsGzLRctESA?si=O-PMZGiSalToCvf-&amp;controls=0&amp;start=152&amp;end=170">
+                                            <img data-src="gifts.png">
+                                        </a>
+                                    </div>
+                                    
+                                </li>
+                                <li class="fragmen">
+                                    <div class="split">
+                                        <p><strong>Raumdekoration:</strong> 
+                                        Virtuelle Ornamente können frei in der AR-Umgebung platziert werden</p>
+                                        <a href="#" data-modal-type="iframe" data-modal-url="https://www.youtube.com/embed/vsGzLRctESA?si=O-PMZGiSalToCvf-&amp;controls=0&amp;start=172&amp;end=185">
+                                            <img data-src="decoration.png">
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="fragmen">
+                                    <div class="split">
+                                        <p><strong>Baumbeleuchtung:</strong> 
+                                        Eine "magische" Geste bringt den Weihnachtsbaum zum Leuchten</p>
+                                        <a href="#" data-modal-type="iframe" data-modal-url="https://www.youtube.com/embed/vsGzLRctESA?si=O-PMZGiSalToCvf-&amp;controls=0&amp;start=194&amp;end=218">
+                                            <img data-src="tree.png">
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <span class="attribution"><a target="_blank" href="https://www.youtube.com/watch?v=vsGzLRctESA">https://www.youtube.com/watch?v=vsGzLRctESA</a></span>
+            </section>
+
+            <!-- Technologie und Umsetzung -->
+            <section>
+                <div class="myslide">
+                    <h2>Umsetzung</h2>
+                    <div class="content">
+                        <div>
+                            <ul>
+                                <li><p><strong>Hardware:</strong> AR-Brille, VR-Brille, 360°-Kamera, Smart-Plug-System</p></li>
+                                <li><p><strong>Software:</strong> Echtzeit-Synchronisation von Video, Avatar-Bewegungen und virtuellen Objekten</p></li>
+                                <li><p>Interaktion zwischen virtuellen und physischen Räumen – z.B. Platzieren virtueller Objekte auf realen Möbeln</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Nutzererfahrungen -->
+            <section>
+                <div class="myslide">
+                    <h2>Nutzererfahrungen</h2>
+                    <div class="content">
+                        <div>
+                            <p style="font-size: .6em;">(Befragung von 2 Remote-Nutzern)</p>
+                            <p>Verglichen mit Videokonferenzen ...</p>
+                            <ul>
+                                <li><p>fühlten sich Nutzer durch die gesteigerte Kontrolle stärker mit dem Raum verbunden</p></li>
+                                <li><p>empfanden Nutzer die magischen Elemente als kreativer und bedeutungsvoller als physische Interaktionen</p></li>
+                                <li><p>geringfügige Unterschiede in der Wahrnehmung zwischen lokalen und Remote-Nutzern</p></li>
+                            </ul>
+                        </div>
+                    </div>
+            </section>
+
+            <!-- Ausblick und Weiterentwicklung -->
+            <section>
+                <div class="myslide">
+                    <h2>Ausblick</h2>
+                    <div class="content">
+                        <div>
+                            <ul>
+                                <li class="text">Größere Nutzerstudien zur Erforschung der sozialen und emotionalen Auswirkungen</li>
+                                <li class="text">Erweiterung der Plattform für andere Anwendungsfälle (z.B. Bildung, Fernmedizin)</li>
+                                <li>
+                                    <div class="split">
+                                        <span class="text">Innovationen zur Steigerung des Realitätsempfindens (z. B. Disney HoloTile)</span>
+                                        <a href="#" data-modal-type="iframe" data-modal-url="https://www.youtube.com/embed/68YMEmaF0rs?si=WzY0EStnG8uVjCzA&amp;start=202&amp;end=232&amp;controls=0">
+                                            <img data-src="holotile.png">
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <span class="attribution"><a target="_blank" href="https://www.youtube.com/watch?v=68YMEmaF0rs">https://www.youtube.com/watch?v=68YMEmaF0rs</a></span>
+            </section>
+
+			<section>
+                <div class="myslide">
+                    <h2>Zusammenfassung</h2>
+                    <div class="content">
+                        <div>
+                            <ul>
+                                <li><p>3D-Videokonferenzen mit AR & VR und der Möglichkeit mit Objekten in einem anderem Raum zu interagieren</p></li>
+                                <li><p>Magische Erlebnisse schaffen einprägsamere Interaktionen als Nachbildung der Realität</p></li>
+                                <li><p>Größere Nutzerstudien & Erweiterung auf neue Situationen geplant</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+			</section>
+
+            <!-- Abschluss -->
+            <section>
+                <ul class="lightrope">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <div class="myslide">
+                    <div class="content">
+                        <h4 style="font-weight: 200;">Vielen Dank für Ihre Aufmerksamkeit.</h3>
+                        <h2 style="font-family: 'Dancing Script'; margin: 2em 0;">Frohe Weihnachten!</h2>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="myslide">
+                    <div class="content">
+                        <p>
+                            <a target="_blank" class="button" href="https://brennanjones.com/index.php?section=projects&page=xrmas">Mehr über XRmas erfahren</a>
+                        </p>
+                    </div>
+                </div>
+                <span class="attribution"><a target="_blank" href="https://brennanjones.com/index.php?section=projects&page=xrmas">https://brennanjones.com/index.php?section=projects&page=xrmas</a></span>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+	<script src="https://martinomagnifico.github.io/reveal.js-multimodal/plugin/multimodal/multimodal.js"></script>
+    <script src="https://lukcron.github.io/xrmas/attribution.js"></script>
+    <script>
+        Reveal.initialize({
+          // transition: 'convex', // Transition style
+          controls: false,
+          progress: false,
+		  center: false,
+          disableLayout: true,
+		  preloadIframes: true,
+		  plugins: [ Multimodal, RevealAttribution ],
+        });
+    </script>
+    <script>
+        /** @license
+         * DHTML Snowstorm! JavaScript-based snow for web pages
+         * Making it snow on the internets since 2003. You're welcome.
+         * -----------------------------------------------------------
+         * Version 1.44.20131208 (Previous rev: 1.44.20131125)
+         * Copyright (c) 2007, Scott Schiller. All rights reserved.
+         * Code provided under the BSD License
+         * http://schillmania.com/projects/snowstorm/license.txt
+         */
+
+        /*jslint nomen: true, plusplus: true, sloppy: true, vars: true, white: true */
+        /*global window, document, navigator, clearInterval, setInterval */
+
+        var snowStorm = (function(window, document) {
+
+        // --- common properties ---
+
+        this.autoStart = true;          // Whether the snow should start automatically or not.
+        this.excludeMobile = true;      // Snow is likely to be bad news for mobile phones' CPUs (and batteries.) Enable at your own risk.
+        this.flakesMax = 128;           // Limit total amount of snow made (falling + sticking)
+        this.flakesMaxActive = 64;      // Limit amount of snow falling at once (less = lower CPU use)
+        this.animationInterval = 50;    // Theoretical "miliseconds per frame" measurement. 20 = fast + smooth, but high CPU use. 50 = more conservative, but slower
+        this.useGPU = true;             // Enable transform-based hardware acceleration, reduce CPU load.
+        this.className = null;          // CSS class name for further customization on snow elements
+        this.excludeMobile = true;      // Snow is likely to be bad news for mobile phones' CPUs (and batteries.) By default, be nice.
+        this.flakeBottom = null;        // Integer for Y axis snow limit, 0 or null for "full-screen" snow effect
+        this.followMouse = false;        // Snow movement can respond to the user's mouse
+        this.snowColor = '#fff';        // Don't eat (or use?) yellow snow.
+        this.snowCharacter = '&bull;';  // &bull; = bullet, &middot; is square on some systems etc.
+        this.snowStick = true;          // Whether or not snow should "stick" at the bottom. When off, will never collect.
+        this.targetElement = winterworld;      // element which snow will be appended to (null = document.body) - can be an element ID eg. 'myDiv', or a DOM node reference
+        this.useMeltEffect = true;      // When recycling fallen snow (or rarely, when falling), have it "melt" and fade out if browser supports it
+        this.useTwinkleEffect = false;  // Allow snow to randomly "flicker" in and out of view while falling
+        this.usePositionFixed = false;  // true = snow does not shift vertically when scrolling. May increase CPU load, disabled by default - if enabled, used only where supported
+        this.usePixelPosition = false;  // Whether to use pixel values for snow top/left vs. percentages. Auto-enabled if body is position:relative or targetElement is specified.
+
+        // --- less-used bits ---
+
+        this.freezeOnBlur = true;       // Only snow when the window is in focus (foreground.) Saves CPU.
+        this.flakeLeftOffset = 0;       // Left margin/gutter space on edge of container (eg. browser window.) Bump up these values if seeing horizontal scrollbars.
+        this.flakeRightOffset = 0;      // Right margin/gutter space on edge of container
+        this.flakeWidth = 8;            // Max pixel width reserved for snow element
+        this.flakeHeight = 8;           // Max pixel height reserved for snow element
+        this.vMaxX = 5;                 // Maximum X velocity range for snow
+        this.vMaxY = 4;                 // Maximum Y velocity range for snow
+        this.zIndex = 0;                // CSS stacking order applied to each snowflake
+
+        // --- "No user-serviceable parts inside" past this point, yadda yadda ---
+
+        var storm = this,
+        features,
+        // UA sniffing and backCompat rendering mode checks for fixed position, etc.
+        isIE = navigator.userAgent.match(/msie/i),
+        isIE6 = navigator.userAgent.match(/msie 6/i),
+        isMobile = navigator.userAgent.match(/mobile|opera m(ob|in)/i),
+        isBackCompatIE = (isIE && document.compatMode === 'BackCompat'),
+        noFixed = (isBackCompatIE || isIE6),
+        screenX = null, screenX2 = null, screenY = null, scrollY = null, docHeight = null, vRndX = null, vRndY = null,
+        windOffset = 1,
+        windMultiplier = 2,
+        flakeTypes = 6,
+        fixedForEverything = false,
+        targetElementIsRelative = false,
+        opacitySupported = (function(){
+        try {
+            document.createElement('div').style.opacity = '0.5';
+        } catch(e) {
+            return false;
+        }
+        return true;
+        }()),
+        didInit = false,
+        docFrag = document.createDocumentFragment();
+
+        features = (function() {
+
+        var getAnimationFrame;
+
+        /**
+         * hat tip: paul irish
+         * http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+         * https://gist.github.com/838785
+         */
+
+        function timeoutShim(callback) {
+            window.setTimeout(callback, 1000/(storm.animationInterval || 20));
+        }
+
+        var _animationFrame = (window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            timeoutShim);
+
+        // apply to window, avoid "illegal invocation" errors in Chrome
+        getAnimationFrame = _animationFrame ? function() {
+            return _animationFrame.apply(window, arguments);
+        } : null;
+
+        var testDiv;
+
+        testDiv = document.createElement('div');
+
+        function has(prop) {
+
+            // test for feature support
+            var result = testDiv.style[prop];
+            return (result !== undefined ? prop : null);
+
+        }
+
+        // note local scope.
+        var localFeatures = {
+
+            transform: {
+            ie:  has('-ms-transform'),
+            moz: has('MozTransform'),
+            opera: has('OTransform'),
+            webkit: has('webkitTransform'),
+            w3: has('transform'),
+            prop: null // the normalized property value
+            },
+
+            getAnimationFrame: getAnimationFrame
+
+        };
+
+        localFeatures.transform.prop = (
+            localFeatures.transform.w3 || 
+            localFeatures.transform.moz ||
+            localFeatures.transform.webkit ||
+            localFeatures.transform.ie ||
+            localFeatures.transform.opera
+        );
+
+        testDiv = null;
+
+        return localFeatures;
+
+        }());
+
+        this.timer = null;
+        this.flakes = [];
+        this.disabled = false;
+        this.active = false;
+        this.meltFrameCount = 20;
+        this.meltFrames = [];
+
+        this.setXY = function(o, x, y) {
+
+        if (!o) {
+            return false;
+        }
+
+        if (storm.usePixelPosition || targetElementIsRelative) {
+
+            o.style.left = (x - storm.flakeWidth) + 'px';
+            o.style.top = (y - storm.flakeHeight) + 'px';
+
+        } else if (noFixed) {
+
+            o.style.right = (100-(x/screenX*100)) + '%';
+            // avoid creating vertical scrollbars
+            o.style.top = (Math.min(y, docHeight-storm.flakeHeight)) + 'px';
+
+        } else {
+
+            if (!storm.flakeBottom) {
+
+            // if not using a fixed bottom coordinate...
+            o.style.right = (100-(x/screenX*100)) + '%';
+            o.style.bottom = (100-(y/screenY*100)) + '%';
+
+            } else {
+
+            // absolute top.
+            o.style.right = (100-(x/screenX*100)) + '%';
+            o.style.top = (Math.min(y, docHeight-storm.flakeHeight)) + 'px';
+
+            }
+
+        }
+
+        };
+
+        this.events = (function() {
+
+        var old = (!window.addEventListener && window.attachEvent), slice = Array.prototype.slice,
+        evt = {
+            add: (old?'attachEvent':'addEventListener'),
+            remove: (old?'detachEvent':'removeEventListener')
+        };
+
+        function getArgs(oArgs) {
+            var args = slice.call(oArgs), len = args.length;
+            if (old) {
+            args[1] = 'on' + args[1]; // prefix
+            if (len > 3) {
+                args.pop(); // no capture
+            }
+            } else if (len === 3) {
+            args.push(false);
+            }
+            return args;
+        }
+
+        function apply(args, sType) {
+            var element = args.shift(),
+                method = [evt[sType]];
+            if (old) {
+            element[method](args[0], args[1]);
+            } else {
+            element[method].apply(element, args);
+            }
+        }
+
+        function addEvent() {
+            apply(getArgs(arguments), 'add');
+        }
+
+        function removeEvent() {
+            apply(getArgs(arguments), 'remove');
+        }
+
+        return {
+            add: addEvent,
+            remove: removeEvent
+        };
+
+        }());
+
+        function rnd(n,min) {
+        if (isNaN(min)) {
+            min = 0;
+        }
+        return (Math.random()*n)+min;
+        }
+
+        function plusMinus(n) {
+        return (parseInt(rnd(2),10)===1?n*-1:n);
+        }
+
+        this.randomizeWind = function() {
+        var i;
+        vRndX = plusMinus(rnd(storm.vMaxX,0.2));
+        vRndY = rnd(storm.vMaxY,0.2);
+        if (this.flakes) {
+            for (i=0; i<this.flakes.length; i++) {
+            if (this.flakes[i].active) {
+                this.flakes[i].setVelocities();
+            }
+            }
+        }
+        };
+
+        this.scrollHandler = function() {
+        var i;
+        // "attach" snowflakes to bottom of window if no absolute bottom value was given
+        scrollY = (storm.flakeBottom ? 0 : parseInt(window.scrollY || document.documentElement.scrollTop || (noFixed ? document.body.scrollTop : 0), 10));
+        if (isNaN(scrollY)) {
+            scrollY = 0; // Netscape 6 scroll fix
+        }
+        if (!fixedForEverything && !storm.flakeBottom && storm.flakes) {
+            for (i=0; i<storm.flakes.length; i++) {
+            if (storm.flakes[i].active === 0) {
+                storm.flakes[i].stick();
+            }
+            }
+        }
+        };
+
+        this.resizeHandler = function() {
+        if (window.innerWidth || window.innerHeight) {
+            screenX = window.innerWidth - 16 - storm.flakeRightOffset;
+            screenY = (storm.flakeBottom || window.innerHeight);
+        } else {
+            screenX = (document.documentElement.clientWidth || document.body.clientWidth || document.body.scrollWidth) - (!isIE ? 8 : 0) - storm.flakeRightOffset;
+            screenY = storm.flakeBottom || document.documentElement.clientHeight || document.body.clientHeight || document.body.scrollHeight;
+        }
+        docHeight = document.body.offsetHeight;
+        screenX2 = parseInt(screenX/2,10);
+        };
+
+        this.resizeHandlerAlt = function() {
+        screenX = storm.targetElement.offsetWidth - storm.flakeRightOffset;
+        screenY = storm.flakeBottom || storm.targetElement.offsetHeight;
+        screenX2 = parseInt(screenX/2,10);
+        docHeight = document.body.offsetHeight;
+        };
+
+        this.freeze = function() {
+        // pause animation
+        if (!storm.disabled) {
+            storm.disabled = 1;
+        } else {
+            return false;
+        }
+        storm.timer = null;
+        };
+
+        this.resume = function() {
+        if (storm.disabled) {
+            storm.disabled = 0;
+        } else {
+            return false;
+        }
+        storm.timerInit();
+        };
+
+        this.toggleSnow = function() {
+        if (!storm.flakes.length) {
+            // first run
+            storm.start();
+        } else {
+            storm.active = !storm.active;
+            if (storm.active) {
+            storm.show();
+            storm.resume();
+            } else {
+            storm.stop();
+            storm.freeze();
+            }
+        }
+        };
+
+        this.stop = function() {
+        var i;
+        this.freeze();
+        for (i=0; i<this.flakes.length; i++) {
+            this.flakes[i].o.style.display = 'none';
+        }
+        storm.events.remove(window,'scroll',storm.scrollHandler);
+        storm.events.remove(window,'resize',storm.resizeHandler);
+        if (storm.freezeOnBlur) {
+            if (isIE) {
+            storm.events.remove(document,'focusout',storm.freeze);
+            storm.events.remove(document,'focusin',storm.resume);
+            } else {
+            storm.events.remove(window,'blur',storm.freeze);
+            storm.events.remove(window,'focus',storm.resume);
+            }
+        }
+        };
+
+        this.show = function() {
+        var i;
+        for (i=0; i<this.flakes.length; i++) {
+            this.flakes[i].o.style.display = 'block';
+        }
+        };
+
+        this.SnowFlake = function(type,x,y) {
+        var s = this;
+        this.type = type;
+        this.x = x||parseInt(rnd(screenX-20),10);
+        this.y = (!isNaN(y)?y:-rnd(screenY)-12);
+        this.vX = null;
+        this.vY = null;
+        this.vAmpTypes = [1,1.2,1.4,1.6,1.8]; // "amplification" for vX/vY (based on flake size/type)
+        this.vAmp = this.vAmpTypes[this.type] || 1;
+        this.melting = false;
+        this.meltFrameCount = storm.meltFrameCount;
+        this.meltFrames = storm.meltFrames;
+        this.meltFrame = 0;
+        this.twinkleFrame = 0;
+        this.active = 1;
+        this.fontSize = (10+(this.type/5)*10);
+        this.o = document.createElement('div');
+        this.o.innerHTML = storm.snowCharacter;
+        if (storm.className) {
+            this.o.setAttribute('class', storm.className);
+        }
+        this.o.style.color = storm.snowColor;
+        this.o.style.position = (fixedForEverything?'fixed':'absolute');
+        if (storm.useGPU && features.transform.prop) {
+            // GPU-accelerated snow.
+            this.o.style[features.transform.prop] = 'translate3d(0px, 0px, 0px)';
+        }
+        this.o.style.width = storm.flakeWidth+'px';
+        this.o.style.height = storm.flakeHeight+'px';
+        this.o.style.fontFamily = 'arial,verdana';
+        this.o.style.cursor = 'default';
+        this.o.style.overflow = 'hidden';
+        this.o.style.fontWeight = 'normal';
+        this.o.style.zIndex = storm.zIndex;
+        docFrag.appendChild(this.o);
+
+        this.refresh = function() {
+            if (isNaN(s.x) || isNaN(s.y)) {
+            // safety check
+            return false;
+            }
+            storm.setXY(s.o, s.x, s.y);
+        };
+
+        this.stick = function() {
+            if (noFixed || (storm.targetElement !== document.documentElement && storm.targetElement !== document.body)) {
+            s.o.style.top = (screenY+scrollY-storm.flakeHeight)+'px';
+            } else if (storm.flakeBottom) {
+            s.o.style.top = storm.flakeBottom+'px';
+            } else {
+            s.o.style.display = 'none';
+            s.o.style.bottom = '0%';
+            s.o.style.position = 'fixed';
+            s.o.style.display = 'block';
+            }
+        };
+
+        this.vCheck = function() {
+            if (s.vX>=0 && s.vX<0.2) {
+            s.vX = 0.2;
+            } else if (s.vX<0 && s.vX>-0.2) {
+            s.vX = -0.2;
+            }
+            if (s.vY>=0 && s.vY<0.2) {
+            s.vY = 0.2;
+            }
+        };
+
+        this.move = function() {
+            var vX = s.vX*windOffset, yDiff;
+            s.x += vX;
+            s.y += (s.vY*s.vAmp);
+            if (s.x >= screenX || screenX-s.x < storm.flakeWidth) { // X-axis scroll check
+            s.x = 0;
+            } else if (vX < 0 && s.x-storm.flakeLeftOffset < -storm.flakeWidth) {
+            s.x = screenX-storm.flakeWidth-1; // flakeWidth;
+            }
+            s.refresh();
+            yDiff = screenY+scrollY-s.y+storm.flakeHeight;
+            if (yDiff<storm.flakeHeight) {
+            s.active = 0;
+            if (storm.snowStick) {
+                s.stick();
+            } else {
+                s.recycle();
+            }
+            } else {
+            if (storm.useMeltEffect && s.active && s.type < 3 && !s.melting && Math.random()>0.998) {
+                // ~1/1000 chance of melting mid-air, with each frame
+                s.melting = true;
+                s.melt();
+                // only incrementally melt one frame
+                // s.melting = false;
+            }
+            if (storm.useTwinkleEffect) {
+                if (s.twinkleFrame < 0) {
+                if (Math.random() > 0.97) {
+                    s.twinkleFrame = parseInt(Math.random() * 8, 10);
+                }
+                } else {
+                s.twinkleFrame--;
+                if (!opacitySupported) {
+                    s.o.style.visibility = (s.twinkleFrame && s.twinkleFrame % 2 === 0 ? 'hidden' : 'visible');
+                } else {
+                    s.o.style.opacity = (s.twinkleFrame && s.twinkleFrame % 2 === 0 ? 0 : 1);
+                }
+                }
+            }
+            }
+        };
+
+        this.animate = function() {
+            // main animation loop
+            // move, check status, die etc.
+            s.move();
+        };
+
+        this.setVelocities = function() {
+            s.vX = vRndX+rnd(storm.vMaxX*0.12,0.1);
+            s.vY = vRndY+rnd(storm.vMaxY*0.12,0.1);
+        };
+
+        this.setOpacity = function(o,opacity) {
+            if (!opacitySupported) {
+            return false;
+            }
+            o.style.opacity = opacity;
+        };
+
+        this.melt = function() {
+            if (!storm.useMeltEffect || !s.melting) {
+            s.recycle();
+            } else {
+            if (s.meltFrame < s.meltFrameCount) {
+                s.setOpacity(s.o,s.meltFrames[s.meltFrame]);
+                s.o.style.fontSize = s.fontSize-(s.fontSize*(s.meltFrame/s.meltFrameCount))+'px';
+                s.o.style.lineHeight = storm.flakeHeight+2+(storm.flakeHeight*0.75*(s.meltFrame/s.meltFrameCount))+'px';
+                s.meltFrame++;
+            } else {
+                s.recycle();
+            }
+            }
+        };
+
+        this.recycle = function() {
+            s.o.style.display = 'none';
+            s.o.style.position = (fixedForEverything?'fixed':'absolute');
+            s.o.style.bottom = 'auto';
+            s.setVelocities();
+            s.vCheck();
+            s.meltFrame = 0;
+            s.melting = false;
+            s.setOpacity(s.o,1);
+            s.o.style.padding = '0px';
+            s.o.style.margin = '0px';
+            s.o.style.fontSize = s.fontSize+'px';
+            s.o.style.lineHeight = (storm.flakeHeight+2)+'px';
+            s.o.style.textAlign = 'center';
+            s.o.style.verticalAlign = 'baseline';
+            s.x = parseInt(rnd(screenX-storm.flakeWidth-20),10);
+            s.y = parseInt(rnd(screenY)*-1,10)-storm.flakeHeight;
+            s.refresh();
+            s.o.style.display = 'block';
+            s.active = 1;
+        };
+
+        this.recycle(); // set up x/y coords etc.
+        this.refresh();
+
+        };
+
+        this.snow = function() {
+        var active = 0, flake = null, i, j;
+        for (i=0, j=storm.flakes.length; i<j; i++) {
+            if (storm.flakes[i].active === 1) {
+            storm.flakes[i].move();
+            active++;
+            }
+            if (storm.flakes[i].melting) {
+            storm.flakes[i].melt();
+            }
+        }
+        if (active<storm.flakesMaxActive) {
+            flake = storm.flakes[parseInt(rnd(storm.flakes.length),10)];
+            if (flake.active === 0) {
+            flake.melting = true;
+            }
+        }
+        if (storm.timer) {
+            features.getAnimationFrame(storm.snow);
+        }
+        };
+
+        this.mouseMove = function(e) {
+        if (!storm.followMouse) {
+            return true;
+        }
+        var x = parseInt(e.clientX,10);
+        if (x<screenX2) {
+            windOffset = -windMultiplier+(x/screenX2*windMultiplier);
+        } else {
+            x -= screenX2;
+            windOffset = (x/screenX2)*windMultiplier;
+        }
+        };
+
+        this.createSnow = function(limit,allowInactive) {
+        var i;
+        for (i=0; i<limit; i++) {
+            storm.flakes[storm.flakes.length] = new storm.SnowFlake(parseInt(rnd(flakeTypes),10));
+            if (allowInactive || i>storm.flakesMaxActive) {
+            storm.flakes[storm.flakes.length-1].active = -1;
+            }
+        }
+        storm.targetElement.appendChild(docFrag);
+        };
+
+        this.timerInit = function() {
+        storm.timer = true;
+        storm.snow();
+        };
+
+        this.init = function() {
+        var i;
+        for (i=0; i<storm.meltFrameCount; i++) {
+            storm.meltFrames.push(1-(i/storm.meltFrameCount));
+        }
+        storm.randomizeWind();
+        storm.createSnow(storm.flakesMax); // create initial batch
+        storm.events.add(window,'resize',storm.resizeHandler);
+        storm.events.add(window,'scroll',storm.scrollHandler);
+        if (storm.freezeOnBlur) {
+            if (isIE) {
+            storm.events.add(document,'focusout',storm.freeze);
+            storm.events.add(document,'focusin',storm.resume);
+            } else {
+            storm.events.add(window,'blur',storm.freeze);
+            storm.events.add(window,'focus',storm.resume);
+            }
+        }
+        storm.resizeHandler();
+        storm.scrollHandler();
+        if (storm.followMouse) {
+            storm.events.add(isIE?document:window,'mousemove',storm.mouseMove);
+        }
+        storm.animationInterval = Math.max(20,storm.animationInterval);
+        storm.timerInit();
+        };
+
+        this.start = function(bFromOnLoad) {
+        if (!didInit) {
+            didInit = true;
+        } else if (bFromOnLoad) {
+            // already loaded and running
+            return true;
+        }
+        if (typeof storm.targetElement === 'string') {
+            var targetID = storm.targetElement;
+            storm.targetElement = document.getElementById(targetID);
+            if (!storm.targetElement) {
+            throw new Error('Snowstorm: Unable to get targetElement "'+targetID+'"');
+            }
+        }
+        if (!storm.targetElement) {
+            storm.targetElement = (document.body || document.documentElement);
+        }
+        if (storm.targetElement !== document.documentElement && storm.targetElement !== document.body) {
+            // re-map handler to get element instead of screen dimensions
+            storm.resizeHandler = storm.resizeHandlerAlt;
+            //and force-enable pixel positioning
+            storm.usePixelPosition = true;
+        }
+        storm.resizeHandler(); // get bounding box elements
+        storm.usePositionFixed = (storm.usePositionFixed && !noFixed && !storm.flakeBottom); // whether or not position:fixed is to be used
+        if (window.getComputedStyle) {
+            // attempt to determine if body or user-specified snow parent element is relatlively-positioned.
+            try {
+            targetElementIsRelative = (window.getComputedStyle(storm.targetElement, null).getPropertyValue('position') === 'relative');
+            } catch(e) {
+            // oh well
+            targetElementIsRelative = false;
+            }
+        }
+        fixedForEverything = storm.usePositionFixed;
+        if (screenX && screenY && !storm.disabled) {
+            storm.init();
+            storm.active = true;
+        }
+        };
+
+        function doDelayedStart() {
+        window.setTimeout(function() {
+            storm.start(true);
+        }, 20);
+        // event cleanup
+        storm.events.remove(isIE?document:window,'mousemove',doDelayedStart);
+        }
+
+        function doStart() {
+        if (!storm.excludeMobile || !isMobile) {
+            doDelayedStart();
+        }
+        // event cleanup
+        storm.events.remove(window, 'load', doStart);
+        }
+
+        // hooks for starting the snow
+        if (storm.autoStart) {
+        storm.events.add(window, 'load', doStart, false);
+        }
+
+        return this;
+
+        }(window, document));
+
+    </script>
+</body>
+</html>
+
